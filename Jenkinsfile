@@ -19,5 +19,18 @@ pipeline {
                 }
             }
         }
+
+        stage("version"){
+            steps{
+                sshagent(credentials: ['mateusz.sawa@gmail.com']) {
+                    sh 'git config --local user.email "mateusz.sawa@gmail.com"'
+                    sh 'git config --local user.name "mateusz"'
+                    sh './pipeline.sh version'
+                    sh 'git add .'
+                    sh 'git commit -m "version bump"'
+                    sh 'git push origin master'
+                }
+            }
+        }
     }
 }
