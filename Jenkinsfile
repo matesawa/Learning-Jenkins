@@ -26,11 +26,7 @@ pipeline {
                     sh "git config user.email mateusz.sawa@gmail.com"
                     sh "git config user.name matesawa"
 
-                    sh('git checkout master')
-                    sh('git pull')
                     sh('./pipeline.sh version')
-                    sh('git add .')
-                    sh('git commit -m version')
                     sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/matesawa/Learning-Jenkins.git master')
                 }
             }
