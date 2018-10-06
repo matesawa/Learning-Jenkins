@@ -27,7 +27,7 @@ pipeline {
                     sh('./pipeline.sh version')
                     sh('git add .')
                     sh('git commit -m version')
-                    sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/matesawa/Learning-Jenkins')
+                    sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/matesawa/Learning-Jenkins master')
                 }
             }
         }
