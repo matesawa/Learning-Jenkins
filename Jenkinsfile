@@ -22,7 +22,7 @@ pipeline {
 
         stage("version"){
             steps{
-                sshagent(credentials: ['mateusz.sawa@gmail.com']) {
+                sshagent(credentials: ['c96bd7d2-a99f-41bd-b529-2c5b314e647b']) {
                     sh 'git config --local user.email "mateusz.sawa@gmail.com"'
                     sh 'git config --local user.name "mateusz"'
                     sh './pipeline.sh version'
