@@ -19,6 +19,14 @@ pipeline {
                 }
             }
         }
+        
+        stage("dockerize"){
+            steps{
+                script{
+                    sh('./pipeline.sh dockerize')
+                }
+            }
+        }
 
         stage("version"){
             steps{

@@ -9,9 +9,16 @@ updateVersion() {
     git add . && git commit -m version
 }
 
+dockerize() {
+    docker build .
+}
+
 case $COMMAND in
     'version')
         updateVersion
+        ;;
+    'dockerize')
+        dockerize
         ;;
 
 esac
