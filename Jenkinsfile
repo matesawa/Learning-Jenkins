@@ -25,6 +25,7 @@ pipeline {
                 sshagent(credentials: ['dupa']) {
                     sh 'git config --local user.email "mateusz.sawa@gmail.com"'
                     sh 'git config --local user.name "mateusz"'
+                    sh 'git checkout master'
                     sh './pipeline.sh version'
                     sh 'git add .'
                     sh 'git commit -m version-change'
