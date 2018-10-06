@@ -22,7 +22,7 @@ pipeline {
 
         stage("version"){
             steps{
-                sshagent(credentials: ['dupa']) {
+                sshagent(credentials: ['github-key']) {
                     sh 'git config --local user.email "mateusz.sawa@gmail.com"'
                     sh 'git config --local user.name "mateusz"'
                     sh 'git checkout master'
