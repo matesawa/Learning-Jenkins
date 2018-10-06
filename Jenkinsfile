@@ -23,11 +23,14 @@ pipeline {
         stage("version"){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'c96bd7d2-a99f-41bd-b529-2c5b314e647b', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    sh "git config user.email mateusz.sawa@gmail.com"
+                    sh "git config user.name matesawa"
+                    
                     sh('git checkout master')
                     sh('./pipeline.sh version')
                     sh('git add .')
                     sh('git commit -m version')
-                    sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/matesawa/Learning-Jenkins master')
+                    sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/matesawa/Learning-Jenkins.git master')
                 }
             }
         }
