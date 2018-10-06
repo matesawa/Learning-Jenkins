@@ -27,7 +27,7 @@ pipeline {
                     sh 'git config --local user.name "mateusz"'
                     sh './pipeline.sh version'
                     sh 'git add .'
-                    sh 'git commit -m "version bump"'
+                    sh 'git commit -m'
                     sh 'git push origin master'
                 }
             }
