@@ -1,10 +1,14 @@
 pipeline {
     agent any
 
+    options{
+        skipDefaultCheckout()
+    }
+
     stages{
         stage("checkout"){
             steps{
-                scm checkout
+                checkout scm
             }
         }
 
