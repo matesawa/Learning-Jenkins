@@ -3,12 +3,16 @@ pipeline {
 
     stages{
         stage("checkout"){
-            scm checkout
+            steps{
+                scm checkout
+            }
         }
 
         stage("introduction"){
-            script{
-                println "Hello!"
+            steps{
+                script{
+                    println "Hello!"
+                }
             }
         }
     }
