@@ -8,7 +8,7 @@ RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 
 COPY ./install-docker.sh .
 RUN ./install-docker.sh
-
+RUN chown :jenkins /var/run/docker.sock
 RUN apt-get install bc
 
 USER jenkins
