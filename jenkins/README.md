@@ -1,0 +1,1 @@
+chown :jenkins /var/run/docker.sock

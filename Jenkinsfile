@@ -30,7 +30,7 @@ pipeline {
 
         stage("version"){
             steps{
-                withCredentials([usernamePassword(credentialsId: 'c96bd7d2-a99f-41bd-b529-2c5b314e647b', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                     sh "git config user.email mateusz.sawa@gmail.com"
                     sh "git config user.name matesawa"
 
