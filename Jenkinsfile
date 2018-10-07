@@ -28,6 +28,14 @@ pipeline {
             }
         }
 
+        stage(""){
+            steps{
+                script{
+                    sh('./pipeline.sh run')
+                }
+            }
+        }
+
         stage("version"){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {

@@ -10,7 +10,11 @@ updateVersion() {
 }
 
 dockerize() {
-    docker build .
+    docker build . -t app
+}
+
+run() {
+    docker start app:latest
 }
 
 case $COMMAND in
@@ -19,6 +23,9 @@ case $COMMAND in
         ;;
     'dockerize')
         dockerize
+        ;;
+    'run')
+        run
         ;;
 
 esac
