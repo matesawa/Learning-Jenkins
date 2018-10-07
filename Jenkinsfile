@@ -42,9 +42,17 @@ pipeline {
             }
         }
 
+        stage("changelog"){
+            steps{
+                script{
+                    println(currentBuild.changeSets)
+                }
+            }
+        }
+
         stage("version"){
             when{
-                expression { currentBuild.changeSets.size() >= 1 }
+                expression { currentBuild.changeSets }
             }
             steps{
                 script{
