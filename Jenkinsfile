@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stage(""){
+        stage("app-run"){
             steps{
                 script{
                     sh('./pipeline.sh run')
