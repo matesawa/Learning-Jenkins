@@ -8,6 +8,9 @@ pipeline {
     stages{
         stage("checkout"){
             steps{
+                script{
+                    println "Stage: checkout"
+                }
                 checkout scm
             }
         }
@@ -15,6 +18,7 @@ pipeline {
         stage("introduction"){
             steps{
                 script{
+                    println "Stage: introduction"
                     println "Hello!"
                 }
             }
@@ -23,6 +27,7 @@ pipeline {
         stage("dockerize"){
             steps{
                 script{
+                    println "Stage: dockerize"
                     sh('./pipeline.sh dockerize')
                 }
             }
@@ -31,6 +36,7 @@ pipeline {
         stage("app-run"){
             steps{
                 script{
+                    println "Stage: app-run"
                     sh('./pipeline.sh run')
                 }
             }
@@ -38,6 +44,9 @@ pipeline {
 
         stage("version"){
             steps{
+                script{
+                    println "Stage: version"
+                }
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                     sh "git config user.email mateusz.sawa@gmail.com"
                     sh "git config user.name matesawa"
