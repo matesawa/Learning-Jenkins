@@ -14,7 +14,7 @@ dockerize() {
 }
 
 run() {
-    docker start app:latest
+    docker run app:latest
 }
 
 case $COMMAND in
