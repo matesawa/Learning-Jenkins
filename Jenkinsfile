@@ -46,7 +46,7 @@ pipeline {
             steps{
                 script{
                     println "Stage: changelog"
-                    println currentBuild.changeSets.getItems()
+                    println currentBuild.changeSets[0]
                 }
             }
         }
