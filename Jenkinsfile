@@ -44,9 +44,7 @@ pipeline {
 
         stage("version"){
             when{
-                script{
-                    return currentBuild.changeSets.size() > 0
-                }
+                expression { currentBuild.changeSets.size() > 0 }
             }
             steps{
                 script{
