@@ -43,6 +43,9 @@ pipeline {
         }
 
         stage("version"){
+            when{
+                changeRequest()
+            }
             steps{
                 script{
                     println "Stage: version"
