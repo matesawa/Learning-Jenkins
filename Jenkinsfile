@@ -44,7 +44,7 @@ pipeline {
 
         stage("version"){
             when{
-                changeRequest()
+                changeset "*.*"
             }
             steps{
                 script{
