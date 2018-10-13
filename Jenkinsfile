@@ -114,9 +114,9 @@ pipeline {
                 script{
                     println "Stage: version"
                 }
-                withCredentials([usernamePassword(credentialsId: 'ms-build-jenkins', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                    sh "git config user.email ms-build-jenkins@gmail.com"
-                    sh "git config user.name ms-build-jenkins"
+                withCredentials([usernamePassword(credentialsId: '	github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    sh "git config user.email jenkins@gmail.com"
+                    sh "git config user.name jenkins"
 
                     sh('./pipeline.sh version')
                     sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/matesawa/Learning-Jenkins.git master')
