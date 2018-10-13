@@ -49,7 +49,7 @@ pipeline {
                 checkout([
                     $class              : "GitSCM",
                     branches            : [[name: "origin/master"]],
-                    userRemoteConfigs   : [[url: 'https://github.com/matesawa/Learning-Jenkins.git']])
+                    userRemoteConfigs   : [[url: 'https://github.com/matesawa/Learning-Jenkins.git']]])
 
                 script{ 
                     author = sh(script: 'git log -n1 --format="%an"', returnStdout: true).trim().toLowerCase()
