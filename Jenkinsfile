@@ -31,6 +31,7 @@ pipeline {
         
         stage("checkout"){
             steps{
+                deleteDir()
                 script{
                      println "Stage: checkout"
                 }
