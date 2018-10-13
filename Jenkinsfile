@@ -3,6 +3,7 @@ pipeline {
 
     options{
         skipDefaultCheckout()
+        buildDiscarder(logRotator(numToKeepStr: '5'))
     }
 
     stages{
@@ -52,7 +53,7 @@ pipeline {
                                 currentBuild.result = '${CONDITION}'
                             } else {
                                 println "Build is unstable: ${randomBoolean}"
-                                println "Build actual state: ${currentBuild.result}"
+                                println "Build actual state: ${currentBuild.result == null ? unknown : currentBuild.result}"
                             }
                         }
                     }
@@ -112,24 +113,41 @@ pipeline {
     }
 
     post{
+        //run on success pipeline
         success{
             echo "post-> success is called"
         }
-
+        //run on failed pipeline
         failure{
             echo "post-> failure is called"
         }
-
+        //run always
         always{
             echo "post-> always is called"
         }
-
+        //run when previous build had different result
         changed{
             echo "post-> changed is called"
         }
-
+        //run when unstable pipeline
         unstable{
             echo "post-> unstable is called "
+        }
+        //run when previous build failed and current is success
+        fixed{
+            echo "post-> fixed is called"
+        }
+        //run when previous build was success and current failed
+        regression{
+            echo "post-> regression is called"
+        }
+        //run when build was aborted by user
+        aborted{
+            echo "post-> aborted is called"
+        }
+        //run regardless of pipeline result, executed last
+        cleanup{
+            echo "post-> cleanup is called"
         }
     }
 }
