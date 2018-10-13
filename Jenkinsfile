@@ -82,7 +82,7 @@ pipeline {
                     steps{
                         script{
                             println "Stage: introduction"
-                            println "Hello!. You selected version ${build_version} to build."
+                            println "Hello!. You selected version ${params.build_version} to build."
                         }
                     }
                 }
