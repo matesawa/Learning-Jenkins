@@ -7,6 +7,11 @@ pipeline {
         skipDefaultCheckout()
         buildDiscarder(logRotator(numToKeepStr: '5'))
         disableConcurrentBuilds()
+        skipStagesAfterUnstable()
+    }
+
+    parameters{
+        string(name: 'build_version', defaultValue: '', description: 'Type application version to build. Ex: 0.39.')
     }
 
     stages{
@@ -53,7 +58,7 @@ pipeline {
             parallel{
                 stage("build"){
                     environment {
-                        CONDITION = 'UNSTABLE'
+                        BUILD_CONDITION = 'UNSTABLE'
                     }
 
                     steps{
@@ -63,8 +68,8 @@ pipeline {
                             def currentBuildState = currentBuild.result == null ? 'unknown' : currentBuild.result;
 
                             if (randomBoolean){
-                                println "Build is ${CONDITION}. Numer was ${randomNumber}."
-                                currentBuild.result = '${CONDITION}'
+                                println "Build is ${BUILD_CONDITION}. Numer was ${randomNumber}."
+                                currentBuild.result = '${BUILD_CONDITION}'
                             } else {
                                 println "Build is unstable: ${randomBoolean}, number was: ${randomNumber}."
                                 println "Build actual state: ${currentBuildState}"
@@ -77,7 +82,7 @@ pipeline {
                     steps{
                         script{
                             println "Stage: introduction"
-                            println "Hello!"
+                            println "Hello!. You selected version ${build_version} to build."
                         }
                     }
                 }
