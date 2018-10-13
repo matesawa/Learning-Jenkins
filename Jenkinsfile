@@ -6,6 +6,8 @@ pipeline {
     }
 
     stages{
+        failfast: true
+        
         stage("checkout"){
             steps{
                 script{
@@ -15,24 +17,26 @@ pipeline {
             }
         }
 
-        stage("introduction"){
-            steps{
-                script{
-                    println "Stage: introduction"
-                    println "Hello!"
+        parallel{
+            stage("introduction"){
+                        steps{
+                            script{
+                                println "Stage: introduction"
+                                println "Hello!"
+                            }
+                        }
+                    }
+        
+            stage("dockerize"){
+                steps{
+                    script{
+                        println "Stage: dockerize"
+                        sh('./pipeline.sh dockerize')
+                    }
                 }
             }
         }
         
-        stage("dockerize"){
-            steps{
-                script{
-                    println "Stage: dockerize"
-                    sh('./pipeline.sh dockerize')
-                }
-            }
-        }
-
         stage("app-run"){
             steps{
                 script{
