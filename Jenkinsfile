@@ -89,19 +89,19 @@ pipeline {
                 }
             }
         }
+    }
 
-        post{
-            success{
-                echo "post-> success is called"
-            }
+    post{
+        success{
+            echo "post-> success is called"
+        }
 
-            failure{
-                echo "post-> failure is called"
-            }
+        failure{
+            echo "post-> failure is called"
+        }
 
-            always{
-                echo "post-> always is called"
-            }
+        always{
+            echo "post-> always is called"
         }
     }
 }
