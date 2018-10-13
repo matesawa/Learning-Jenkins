@@ -46,6 +46,10 @@ pipeline {
         stage("stages running in parallel") {
             failFast true
 
+            when {
+                expression { return author!='ms-build-jenkins' }
+            }
+
             parallel{
                 stage("build"){
                     environment {
@@ -90,6 +94,10 @@ pipeline {
         }
         
         stage("app-run"){
+            when {
+                expression { return author!='ms-build-jenkins' }
+            }
+            
             steps{
                 script{
                     println "Stage: app-run"
@@ -99,6 +107,10 @@ pipeline {
         }
 
         stage("changelog"){
+            when {
+                expression { return author!='ms-build-jenkins' }
+            }
+
             steps{
                 script{
                     println "Stage: changelog"
