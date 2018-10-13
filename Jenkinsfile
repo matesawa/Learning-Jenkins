@@ -7,23 +7,23 @@ pipeline {
 
     stages{
 
-        stage("message") {
-            input { 
-                message "Please give introduction message:"
-                ok "OK"
-                submitter "dummyuser,admin"
-                submitterParameter "whoIsSubmitter"
-                parameters {
-                    string(name: 'title', defaultValue: 'Some title', description: 'Specify introduction message.')
-                    booleanParam(name: 'skipChangelog', defaultValue: false, description: 'skip changelog' )
-                }
-            }
+        // stage("message") {
+        //     input { 
+        //         message "Please give introduction message:"
+        //         ok "OK"
+        //         submitter "dummyuser,admin"
+        //         submitterParameter "whoIsSubmitter"
+        //         parameters {
+        //             string(name: 'title', defaultValue: 'Some title', description: 'Specify introduction message.')
+        //             booleanParam(name: 'skipChangelog', defaultValue: false, description: 'skip changelog' )
+        //         }
+        //     }
 
-            steps {
-                echo "Introduction title is: ${title}"
-                echo "Skip changelog: ${skipChangelog}"
-            }
-        }
+        //     steps {
+        //         echo "Introduction title is: ${title}"
+        //         echo "Skip changelog: ${skipChangelog}"
+        //     }
+        // }
         
         stage("checkout"){
             steps{
@@ -87,6 +87,20 @@ pipeline {
                     sh('./pipeline.sh version')
                     sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/matesawa/Learning-Jenkins.git master')
                 }
+            }
+        }
+
+        post{
+            success{
+                echo "post-> success is called"
+            }
+
+            failure{
+                echo "post-> failure is called"
+            }
+
+            always{
+                echo "post-> always is called"
             }
         }
     }
