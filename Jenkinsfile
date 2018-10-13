@@ -39,7 +39,9 @@ pipeline {
 
             parallel{
                 stage("build"){
-                    CONDITION="UNSTABLE"
+                    environment {
+                        CONDITION = 'UNSTABLE'
+                    }
 
                     steps{
                         script{
