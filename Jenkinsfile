@@ -37,6 +37,7 @@ pipeline {
                 checkout scm
                     script{ 
                         author = sh(script: 'git log -n1 --format="%an"', returnStdout: true).trim().toLowerCase()
+                        println "Author is: ${author}"
                     }
             }
         }
