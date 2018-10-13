@@ -39,10 +39,13 @@ pipeline {
 
             parallel{
                 stage("build"){
+                    CONDITION="UNSTABLE"
+
                     steps{
                         script{
                             if (Math.random() < 0.5){
-                                currentBuild.result = 'UNSTABLE'
+                                println "Build is ${CONDITION}"
+                                currentBuild.result = '${CONDITION}'
                             }
                         }
                     }
