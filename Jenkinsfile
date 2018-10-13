@@ -1,3 +1,5 @@
+def author
+
 pipeline {
     agent any
 
@@ -30,12 +32,12 @@ pipeline {
         stage("checkout"){
             steps{
                 script{
-                    println "Stage: checkout"
+                     println "Stage: checkout"
                 }
                 checkout scm
-                script{
-                    author = sh(script: 'git log -n1 --format="%an"', returnStdout: true).trim().toLowerCase()
-                }
+                    script{ 
+                        author = sh(script: 'git log -n1 --format="%an"', returnStdout: true).trim().toLowerCase()
+                    }
             }
         }
 
