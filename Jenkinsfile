@@ -6,7 +6,6 @@ pipeline {
     }
 
     stages{
-        failfast: true
         
         stage("checkout"){
             steps{
@@ -17,7 +16,10 @@ pipeline {
             }
         }
 
-        parallel{
+        stage('stages running in parallel') {
+            failfast: true
+
+            parallel{
             stage("introduction"){
                         steps{
                             script{
@@ -34,6 +36,7 @@ pipeline {
                         sh('./pipeline.sh dockerize')
                     }
                 }
+            }
             }
         }
         
