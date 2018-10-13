@@ -10,9 +10,13 @@ pipeline {
         skipStagesAfterUnstable()
     }
 
-    parameters{
-        string(name: 'build_version', defaultValue: '', description: 'Type application version to build. Ex: 0.39.')
+    triggers{
+        pollSCM('* * * * *')
     }
+
+    // parameters{
+    //     string(name: 'build_version', defaultValue: '', description: 'Type application version to build. Ex: 0.39.')
+    // }
 
     stages{
 
@@ -40,11 +44,17 @@ pipeline {
                 script{
                      println "Stage: checkout"
                 }
-                checkout scm
-                    script{ 
-                        author = sh(script: 'git log -n1 --format="%an"', returnStdout: true).trim().toLowerCase()
-                        println "Author is: ${author}"
-                    }
+                //checkout scm
+
+                checkout([
+                    $class              : "GitSCM",
+                    branches            : [[name: "origin/master"]],
+                    userRemoteConfigs   : [[url: 'https://github.com/matesawa/Learning-Jenkins.git']])
+
+                script{ 
+                    author = sh(script: 'git log -n1 --format="%an"', returnStdout: true).trim().toLowerCase()
+                    println "Author is: ${author}"
+                }
             }
         }
 
@@ -65,7 +75,7 @@ pipeline {
                         script{
                             def randomNumber = Math.random();
                             def randomBoolean = randomNumber < 0.1
-                            def currentBuildState = currentBuild.result == null ? 'unknown' : currentBuild.result;
+                            def   = currentBuild.result == null ? 'unknown' : currentBuild.result;
 
                             if (randomBoolean){
                                 println "Build is ${BUILD_CONDITION}. Numer was ${randomNumber}."
@@ -82,7 +92,7 @@ pipeline {
                     steps{
                         script{
                             println "Stage: introduction"
-                            println "Hello!. You selected version ${params.build_version} to build."
+                            println "Hello!" /*+ "You selected version ${params.build_version} to build."*/
                         }
                     }
                 }
