@@ -46,14 +46,15 @@ pipeline {
 
                     steps{
                         script{
-                            def randomBoolean = Math.random() < 0.1
+                            def randomNumber = Math.random();
+                            def randomBoolean = randomNumber < 0.1
                             def currentBuildState = currentBuild.result == null ? 'unknown' : currentBuild.result;
-                            
+
                             if (randomBoolean){
-                                println "Build is ${CONDITION}"
+                                println "Build is ${CONDITION}. Numer was ${randomNumber}."
                                 currentBuild.result = '${CONDITION}'
                             } else {
-                                println "Build is unstable: ${randomBoolean}"
+                                println "Build is unstable: ${randomBoolean}, number was: ${randomNumber}."
                                 println "Build actual state: ${currentBuildState}"
                             }
                         }
