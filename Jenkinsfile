@@ -16,27 +16,27 @@ pipeline {
             }
         }
 
-        stage('stages running in parallel') {
-            failfast: true
+        stage("stages running in parallel") {
+            failFast true
 
             parallel{
-            stage("introduction"){
-                        steps{
-                            script{
-                                println "Stage: introduction"
-                                println "Hello!"
-                            }
+                stage("introduction"){
+                    steps{
+                        script{
+                            println "Stage: introduction"
+                            println "Hello!"
                         }
                     }
-        
-            stage("dockerize"){
-                steps{
-                    script{
-                        println "Stage: dockerize"
-                        sh('./pipeline.sh dockerize')
+                }
+            
+                stage("dockerize"){
+                    steps{
+                        script{
+                            println "Stage: dockerize"
+                            sh('./pipeline.sh dockerize')
+                        }
                     }
                 }
-            }
             }
         }
         
