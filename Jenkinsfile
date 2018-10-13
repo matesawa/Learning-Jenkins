@@ -44,6 +44,7 @@ pipeline {
                 script{
                      println "Stage: checkout"
                 }
+                
                 //checkout scm
 
                 checkout([
