@@ -33,6 +33,9 @@ pipeline {
                     println "Stage: checkout"
                 }
                 checkout scm
+                script{
+                    author = sh(script: 'git log -n1 --format="%an"', returnStdout: true).trim().toLowerCase()
+                }
             }
         }
 
@@ -103,7 +106,7 @@ pipeline {
             when {
                 expression { return author!='ms-build-jenkins' }
             }
-            
+
             steps{
                 script{
                     println "Stage: version"
