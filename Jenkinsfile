@@ -38,6 +38,16 @@ pipeline {
             failFast true
 
             parallel{
+                stage("build"){
+                    steps{
+                        script{
+                            if (Math.random() < 0.5){
+                                currentBuild.result = 'UNSTABLE'
+                            }
+                        }
+                    }
+                }
+
                 stage("introduction"){
                     steps{
                         script{
@@ -102,6 +112,14 @@ pipeline {
 
         always{
             echo "post-> always is called"
+        }
+
+        changed{
+            echo "post-> changed is called"
+        }
+
+        unstable{
+            echo "post-> unstable is called "
         }
     }
 }
