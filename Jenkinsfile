@@ -45,7 +45,7 @@ pipeline {
 
                     steps{
                         script{
-                            def randomBoolean = Math.random() < 0.5
+                            def randomBoolean = Math.random() < 0.1
 
                             if (randomBoolean){
                                 println "Build is ${CONDITION}"
