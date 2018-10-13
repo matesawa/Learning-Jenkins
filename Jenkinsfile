@@ -6,6 +6,24 @@ pipeline {
     }
 
     stages{
+
+        stage("message") {
+            input { 
+                message "Please give introduction message:"
+                ok "OK"
+                submitter "dummyuser,admin"
+                submitterParameter "whoIsSubmitter"
+                parameters {
+                    string(name: 'title', defaultValue: 'Some title', description: 'Specify introduction message.')
+                    booleanParam(name: 'skipChangelog', defaultValue: false, description: 'skip changelog' )
+                }
+            }
+
+            steps {
+                echo "Introduction title is: ${title}"
+                echo "Skip changelog: ${skipChangelog}"
+            }
+        }
         
         stage("checkout"){
             steps{
@@ -53,7 +71,6 @@ pipeline {
             steps{
                 script{
                     println "Stage: changelog"
-                    
                 }
             }
         }
