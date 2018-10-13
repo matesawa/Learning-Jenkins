@@ -75,7 +75,7 @@ pipeline {
                         script{
                             def randomNumber = Math.random();
                             def randomBoolean = randomNumber < 0.1
-                            def   = currentBuild.result == null ? 'unknown' : currentBuild.result;
+                            def currentBuildState = currentBuild.result == null ? 'unknown' : currentBuild.result;
 
                             if (randomBoolean){
                                 println "Build is ${BUILD_CONDITION}. Numer was ${randomNumber}."
