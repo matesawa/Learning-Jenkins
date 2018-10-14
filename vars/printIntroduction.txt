@@ -1,0 +1,1 @@
+Prints introduction to the project with specified in parameter name of the project.
