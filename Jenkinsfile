@@ -1,4 +1,4 @@
-@Lirbary("Learning-Jenkins") _
+@Library("Learning-Jenkins") _
 
 def author
 
