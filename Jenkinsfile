@@ -1,5 +1,9 @@
 def author
 
+def printAuthor(authorName){    
+    echo authorName
+}
+
 pipeline {
     agent any
 
@@ -54,7 +58,7 @@ pipeline {
 
                 script{ 
                     author = sh(script: 'git log -n1 --format="%an"', returnStdout: true).trim().toLowerCase()
-                    println "Author is: ${author}"
+                    println "Author is: ${printAuthor(author)}"
                 }
             }
         }
