@@ -1,7 +1,7 @@
 def author
 
-def printAuthor(authorName){    
-    echo authorName
+def printAuthor(author){    
+    return author
 }
 
 pipeline {
