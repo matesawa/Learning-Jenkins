@@ -1,3 +1,5 @@
+@Lirbary("Learning-Jenkins") _
+
 def author
 
 def printAuthor(author){    
@@ -59,6 +61,7 @@ pipeline {
                 script{ 
                     author = sh(script: 'git log -n1 --format="%an"', returnStdout: true).trim().toLowerCase()
                     println "Author is: ${printAuthor(author)}"
+                    printIntroduction.init 'First jenkins pipeline'
                 }
             }
         }
